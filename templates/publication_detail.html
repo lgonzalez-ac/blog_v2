@@ -7,7 +7,8 @@
     <div>
         {{ publication.content }}   
     </div>
-    <a href="{% url 'publications-update' publication.pk %}">editar</a> |
-    <a href="{% url 'publications-delete' publication.pk %}">Borrar</a>
-
+    {% if user.is_authenticated and user == publication.author %}
+        <a href="{% url 'publications-update' publication.pk %}">editar</a> |
+        <a href="{% url 'publications-delete' publication.pk %}">Borrar</a>
+    {% endif %}
 {% endblock content %}
